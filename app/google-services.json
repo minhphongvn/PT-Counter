@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "1039541567336",
+    "project_id": "pt-trainer-e6c92",
+    "storage_bucket": "pt-trainer-e6c92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039541567336:android:2fb3d0dc8a646c6f48a0dd",
+        "android_client_info": {
+          "package_name": "com.minhphonglhu.logindemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039541567336-s52s5h04tad4hu5g6ha88hi1cmf7cii7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.minhphonglhu.logindemo",
+            "certificate_hash": "6e78fb0448295afdd622d552fac54ec283e78204"
+          }
+        },
+        {
+          "client_id": "1039541567336-iau7kvtfb8p0vchvhqondr1c2g3c092d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR_qyZue8PB482XkIII4KD0paOvW6RuzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039541567336-iau7kvtfb8p0vchvhqondr1c2g3c092d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039541567336:android:acfca4885304749848a0dd",
+        "android_client_info": {
+          "package_name": "com.tplink.pt_trainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039541567336-pq8qc10isv9cq46v2ofptqjfpfjut85t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tplink.pt_trainer",
+            "certificate_hash": "6e78fb0448295afdd622d552fac54ec283e78204"
+          }
+        },
+        {
+          "client_id": "1039541567336-iau7kvtfb8p0vchvhqondr1c2g3c092d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR_qyZue8PB482XkIII4KD0paOvW6RuzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039541567336-iau7kvtfb8p0vchvhqondr1c2g3c092d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039541567336:android:db927b98dae0c49048a0dd",
+        "android_client_info": {
+          "package_name": "com.tplink.ptcounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039541567336-iau7kvtfb8p0vchvhqondr1c2g3c092d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR_qyZue8PB482XkIII4KD0paOvW6RuzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039541567336-iau7kvtfb8p0vchvhqondr1c2g3c092d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
