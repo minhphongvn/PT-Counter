@@ -42,6 +42,10 @@ public class UserDetailActivity extends AppCompatActivity {
         Picasso.get().load(mAuth.getCurrentUser().getPhotoUrl()).into(imageView);
     }
 
+    public void back(View view) {
+        finish();
+    }
+
     public void SignOut(View view) {
         mAuth.signOut();
         mGoogleSignInClient.signOut();
