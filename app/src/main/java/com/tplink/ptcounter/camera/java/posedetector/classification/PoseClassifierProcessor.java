@@ -62,6 +62,7 @@ public class PoseClassifierProcessor {
   private List<RepetitionCounter> repCounters;
   private PoseClassifier poseClassifier;
   private String lastRepResult;
+  public static int publicRep = 0;
 
   //TTS
   private static TextToSpeech mTTS;
@@ -167,7 +168,8 @@ public class PoseClassifierProcessor {
           if (repsAfter > repsBefore) {
             //speech from here
             speak(Integer.toString(repsAfter));
-            lastRepResult = String.format(Locale.US, "%s %d", repCounter.getClassName(), repsAfter);
+            lastRepResult = String.format(Locale.US, "%s %d", "Số rep: "/*repCounter.getClassName()*/, repsAfter);
+            publicRep = repsAfter;
             break;
           }
         }

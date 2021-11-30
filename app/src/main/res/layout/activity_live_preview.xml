@@ -48,9 +48,10 @@
 
   <Button
       android:id="@+id/finishExercise"
-      android:layout_width="150dp"
+      android:layout_width="180dp"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="30dp"
+      android:padding="20dp"
+      android:layout_marginBottom="50dp"
       android:background="@drawable/rounded_corners"
       android:backgroundTint="#35495e"
       android:text="HOÀN THÀNH"

@@ -1,60 +1,64 @@
 package com.tplink.ptcounter.fragment;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.tplink.ptcounter.R;
+import com.tplink.ptcounter.activity.PrefixLiveCamera;
+import com.tplink.ptcounter.adapter.HistoryAdapter;
+import com.tplink.ptcounter.camera.java.posedetector.classification.PoseClassifierProcessor;
+import com.tplink.ptcounter.model.History;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HistoryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static android.content.ContentValues.TAG;
+
 public class HistoryFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth;
+    ListView listViewHistory;
+    List<History> historyArrayList = new ArrayList<>();
+    HistoryAdapter historyAdapter;
 
     public HistoryFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HistoryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HistoryFragment newInstance(String param1, String param2) {
-        HistoryFragment fragment = new HistoryFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -62,6 +66,61 @@ public class HistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_history, container, false);
+        listViewHistory = view.findViewById(R.id.listHistory);
+
+        db.collection(mAuth.getUid())
+        .get()
+        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        Log.d(TAG, document.getId() + " => **** " + document.getData().get("summary"));
+                        History history = new History();
+                        history.setDate(document.getData().get("date").toString());
+                        List<Map<String, Object>> plans = (List<Map<String, Object>>) document.getData().get("summary");
+                        if (plans != null) {
+                            Integer squat = plans.stream().mapToInt(i ->  {
+                                if (i.get("type").equals("squats_down")) {
+                                    return Integer.parseInt(i.get("rep").toString());
+                                }
+                                return 0;
+                            }).sum();
+                            Integer pushup = plans.stream().mapToInt(i ->  {
+                                if (i.get("type").equals("pushups_down")) {
+                                    return Integer.parseInt(i.get("rep").toString());
+                                }
+                                return 0;
+                            }).sum();
+
+                            List<String> times = plans.stream().map(i -> i.get("total_time").toString()).collect(Collectors.toList());
+                            Log.d(TAG, "onCompleteeeeeee: " + times);
+                            String totalTime = totalTime(times);
+                            Log.d(TAG, "channnnnnnnn: " + totalTime);
+                            history.setContent("Tổng thời gian tập trong ngày: " + totalTime + " giây\n\nSquat: " + squat + " lần\nChống đẩy: " + pushup + " lần");
+                        }
+                        historyArrayList.add(history);
+                    }
+                    historyAdapter = new HistoryAdapter(getActivity(), R.layout.history_item, historyArrayList);
+                    listViewHistory.setAdapter(historyAdapter);
+
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+
         return view;
+    }
+
+    public static String totalTime(List<String> times) {
+        int total = 0;
+        for (String time : times) {
+            String[] splits = time.split(":");
+            total+=(Integer.parseInt(splits[0])*60 + Integer.parseInt(splits[1]));
+        }
+        return ((total/60 < 10)?"0"+(total/60):total/60) + ":" + ((total%60 < 10)?"0"+(total%60):total%60);
     }
 }

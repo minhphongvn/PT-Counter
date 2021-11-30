@@ -9,6 +9,8 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.tplink.ptcounter.BuildConfig;
+import com.tplink.ptcounter.R;
 import com.tplink.ptcounter.camera.java.LivePreviewActivity;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class PrefixLiveCamera extends AppCompatActivity implements ActivityCompa
     private static final String TAG = "ChooserActivity";
     private static final int PERMISSION_REQUESTS = 1;
     public static String MODE = "";
+    public static int MAXREP = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,15 +44,37 @@ public class PrefixLiveCamera extends AppCompatActivity implements ActivityCompa
                             .build());
         }
         super.onCreate(savedInstanceState);
-
-
-        Log.d(TAG, "onCreate");
+        setContentView(R.layout.prefix_live_camera);
 
         Bundle bundle = getIntent().getExtras();
         MODE = bundle.getString("modeClass");
         Log.d("BUON", "onCreate: " + MODE);
 
-        startActivity(new Intent(this, LivePreviewActivity.class));
+        EditText editRep = findViewById(R.id.inputRep);
+        Button btnStart = findViewById(R.id.startFromPrefix);
+
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (editRep.getText().toString().matches("")) {
+                    MAXREP = 0;
+                    startActivity(new Intent(PrefixLiveCamera.this, LivePreviewActivity.class));
+                    finish();
+                    return;
+                }
+                if (Integer.parseInt(editRep.getText().toString()) > 0)
+                {
+                    MAXREP = Integer.parseInt(editRep.getText().toString());
+                    startActivity(new Intent(PrefixLiveCamera.this, LivePreviewActivity.class));
+                    finish();
+                    return;
+                }
+            }
+        });
+
+        Log.d(TAG, "onCreate");
+
+//        startActivity(new Intent(this, LivePreviewActivity.class));
 
         if (!allPermissionsGranted()) {
             getRuntimePermissions();
@@ -58,7 +84,6 @@ public class PrefixLiveCamera extends AppCompatActivity implements ActivityCompa
     @Override
     protected void onResume() {
         super.onResume();
-        finish();
     }
 
     private String[] getRequiredPermissions() {
