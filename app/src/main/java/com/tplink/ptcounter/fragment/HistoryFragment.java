@@ -98,7 +98,7 @@ public class HistoryFragment extends Fragment {
                             Log.d(TAG, "onCompleteeeeeee: " + times);
                             String totalTime = totalTime(times);
                             Log.d(TAG, "channnnnnnnn: " + totalTime);
-                            history.setContent("Tổng thời gian tập trong ngày: " + totalTime + " giây\n\nSquat: " + squat + " lần\nChống đẩy: " + pushup + " lần");
+                            history.setContent("Tổng thời gian tập trong ngày: " + totalTime + " giây\n" + (squat!=0?"\nSquat: "  + squat + " lần\n":"") + (pushup!=0?"Chống đẩy: " + pushup + " lần":""));
                         }
                         historyArrayList.add(history);
                     }
