@@ -12,22 +12,22 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/normal_login_bg"
+        android:background="#303242"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="0.4"
-        android:background="#0A1F44"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView2"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:alpha="0.4"-->
+<!--        android:background="#0A1F44"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <LinearLayout
         android:id="@+id/loginNormal"
@@ -41,17 +41,32 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_marginTop="100dp"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
+                android:textSize="35sp"
+                android:fontFamily="@font/roboto_light"
                 android:textColor="#fff"
-                android:text="Chào mừng đến với PT Counter"/>
+                android:text="PT COUNTER"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="#fff"
+                android:text="LUÔN ĐỒNG HÀNH CÙNG BẠN"/>
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@mipmap/ic_launcher"></ImageView>
 
         </LinearLayout>
 <!--        <LinearLayout-->
@@ -77,16 +92,16 @@
         android:paddingHorizontal="15dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <!--        <TextView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginBottom="10dp"-->
-        <!--            android:autoSizeTextType="uniform"-->
-        <!--            android:fontFamily="@font/roboto_light"-->
-        <!--            android:text="Đăng nhập"-->
-        <!--            android:textAlignment="center"-->
-        <!--            android:textColor="#fff"-->
-        <!--            android:textSize="28dp" />-->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="0dp"-->
+<!--                    android:autoSizeTextType="uniform"-->
+<!--                    android:fontFamily="@font/roboto_light"-->
+<!--                    android:text="Đăng nhập để tiếp tục"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="#fff"-->
+<!--                    android:textSize="18dp" />-->
 
         <LinearLayout
             android:layout_width="match_parent"

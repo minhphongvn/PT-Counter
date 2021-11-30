@@ -67,22 +67,22 @@ public class LoginActivity extends AppCompatActivity {
         Button loginButton = findViewById(R.id.login_button);
 
         LoginManager.getInstance().registerCallback(mCallbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        Log.d(TAG, "facebook:onSuccess:" + loginResult);
-                        handleFacebookAccessToken(loginResult.getAccessToken());
-                    }
-                    @Override
-                    public void onCancel() {
-                        Toast.makeText(LoginActivity.this, "Login Cancel", Toast.LENGTH_LONG).show();
-                    }
+            new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                    handleFacebookAccessToken(loginResult.getAccessToken());
+                }
+                @Override
+                public void onCancel() {
+                    Toast.makeText(LoginActivity.this, "Login Cancel", Toast.LENGTH_LONG).show();
+                }
 
-                    @Override
-                    public void onError(FacebookException exception) {
-                        Toast.makeText(LoginActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+                @Override
+                public void onError(FacebookException exception) {
+                    Toast.makeText(LoginActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
