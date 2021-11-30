@@ -86,6 +86,10 @@ public class PrefixLiveCamera extends AppCompatActivity implements ActivityCompa
         super.onResume();
     }
 
+    public void back(View view) {
+        finish();
+    }
+
     private String[] getRequiredPermissions() {
         try {
             PackageInfo info =

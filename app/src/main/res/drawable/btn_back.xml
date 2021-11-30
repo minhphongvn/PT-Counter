@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@drawable/btn_rounded_pressed" /> <!-- pressed -->
+    <item android:state_enabled="true" android:drawable="@drawable/bg_rounded_pressed" /> <!-- default -->
+    <item android:state_enabled="false" android:drawable="@drawable/btn_rounded_pressed" />
+    <item android:drawable="@drawable/google_login_icon" />
+</selector>

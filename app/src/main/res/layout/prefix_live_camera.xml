@@ -4,10 +4,23 @@
     android:background="#303242"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     tools:context=".activity.PrefixLiveCamera">
 
+    <Button
+        android:id="@+id/btn_back_prefix"
+        android:background="@drawable/btn_back"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Quay lại"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_margin="20dp"
+        android:onClick="back"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
     <LinearLayout
+        android:layout_centerInParent="true"
         android:orientation="vertical"
         android:layout_width="200dp"
         android:layout_height="wrap_content">
@@ -17,9 +30,9 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:paddingLeft="10dp"
             android:textColor="@color/white"
-            android:textAlignment="center"
-            android:text="Giới hạn" />
+            android:text="Tối đa" />
 
         <TextView
             android:layout_width="match_parent"
@@ -27,8 +40,9 @@
             android:fontFamily="@font/roboto_light"
             android:textSize="14sp"
             android:textColor="@color/white"
-            android:layout_marginVertical="20dp"
-            android:text="Nhập giới hạn số lần tập.\nCó thể chọn 'Bắt đầu' mà không cần phải nhập, số lần đếm sẽ là vô hạn." />
+            android:paddingLeft="13dp"
+            android:layout_marginVertical="15dp"
+            android:text="- Nhập số rep tối đa.\n- Không nhập, số lần đếm sẽ là vô hạn cho đến khi bạn dừng.\n- Có thể bỏ qua." />
 
         <EditText
             android:id="@+id/inputRep"
